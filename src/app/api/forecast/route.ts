@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       metadata: {
         lastUpdated: new Date().toISOString(),
         modelVersion: '2.1.3',
-        confidence: regionData.accuracy || " "
+        confidence: (regionData as { accuracy: number }).accuracy || " "
       }
     });
   } catch (error) {
