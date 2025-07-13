@@ -56,31 +56,31 @@ export default function Overview() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-white mb-2">Supply Chain Overview</h2>
-        <p className="text-gray-400">Real-time insights across all operations</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Supply Chain Overview</h2>
+        <p className="text-sm sm:text-base text-gray-400">Real-time insights across all operations</p>
       </div>
 
       {/* Key Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-gradient-to-br from-red-900/20 to-red-800/10 border border-red-800/30 rounded-xl p-6"
+          className="bg-gradient-to-br from-red-900/20 to-red-800/10 border border-red-800/30 rounded-xl p-4 sm:p-6"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-red-300 text-sm font-medium">Active Disruptions</p>
-              <p className="text-3xl font-bold text-white mt-1">
+              <p className="text-red-300 text-xs sm:text-sm font-medium">Active Disruptions</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white mt-1">
                 {disruptionData?.active || 0}
               </p>
-              <p className="text-red-400 text-sm mt-1">
+              <p className="text-red-400 text-xs sm:text-sm mt-1">
                 {disruptionData?.totalAffectedStores || 0} stores affected
               </p>
             </div>
-            <AlertTriangle className="h-12 w-12 text-red-400" />
+            <AlertTriangle className="h-8 w-8 sm:h-12 sm:w-12 text-red-400" />
           </div>
         </motion.div>
 
@@ -88,19 +88,19 @@ export default function Overview() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-gradient-to-br from-orange-900/20 to-orange-800/10 border border-orange-800/30 rounded-xl p-6"
+          className="bg-gradient-to-br from-orange-900/20 to-orange-800/10 border border-orange-800/30 rounded-xl p-4 sm:p-6"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-orange-300 text-sm font-medium">Critical Waste Items</p>
-              <p className="text-3xl font-bold text-white mt-1">
+              <p className="text-orange-300 text-xs sm:text-sm font-medium">Critical Waste Items</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white mt-1">
                 {wasteData?.criticalItems || 0}
               </p>
-              <p className="text-orange-400 text-sm mt-1">
+              <p className="text-orange-400 text-xs sm:text-sm mt-1">
                 Expiring in 24 hours
               </p>
             </div>
-            <Clock className="h-12 w-12 text-orange-400" />
+            <Clock className="h-8 w-8 sm:h-12 sm:w-12 text-orange-400" />
           </div>
         </motion.div>
 
@@ -108,19 +108,19 @@ export default function Overview() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-gradient-to-br from-green-900/20 to-green-800/10 border border-green-800/30 rounded-xl p-6"
+          className="bg-gradient-to-br from-green-900/20 to-green-800/10 border border-green-800/30 rounded-xl p-4 sm:p-6"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-300 text-sm font-medium">Potential Savings</p>
-              <p className="text-3xl font-bold text-white mt-1">
+              <p className="text-green-300 text-xs sm:text-sm font-medium">Potential Savings</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white mt-1">
                 ${((wasteData?.potentialWasteValue || 0) / 1000).toFixed(0)}K
               </p>
-              <p className="text-green-400 text-sm mt-1">
+              <p className="text-green-400 text-xs sm:text-sm mt-1">
                 Waste reduction opportunity
               </p>
             </div>
-            <DollarSign className="h-12 w-12 text-green-400" />
+            <DollarSign className="h-8 w-8 sm:h-12 sm:w-12 text-green-400" />
           </div>
         </motion.div>
 
@@ -128,19 +128,19 @@ export default function Overview() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-gradient-to-br from-blue-900/20 to-blue-800/10 border border-blue-800/30 rounded-xl p-6"
+          className="bg-gradient-to-br from-blue-900/20 to-blue-800/10 border border-blue-800/30 rounded-xl p-4 sm:p-6"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-blue-300 text-sm font-medium">Total Impact</p>
-              <p className="text-3xl font-bold text-white mt-1">
+              <p className="text-blue-300 text-xs sm:text-sm font-medium">Total Impact</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white mt-1">
                 ${((disruptionData?.totalEstimatedImpact || 0) / 1000000).toFixed(1)}M
               </p>
-              <p className="text-blue-400 text-sm mt-1">
+              <p className="text-blue-400 text-xs sm:text-sm mt-1">
                 Estimated disruption cost
               </p>
             </div>
-            <Store className="h-12 w-12 text-blue-400" />
+            <Store className="h-8 w-8 sm:h-12 sm:w-12 text-blue-400" />
           </div>
         </motion.div>
       </div>
@@ -150,26 +150,26 @@ export default function Overview() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="bg-[#111111] border border-gray-800 rounded-xl p-6"
+        className="bg-[#111111] border border-gray-800 rounded-xl p-4 sm:p-6"
       >
-        <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-4 hover:bg-[#222222] transition-colors cursor-pointer">
-            <AlertTriangle className="h-8 w-8 text-red-400 mb-2" />
-            <h4 className="text-white font-medium mb-1">Review Critical Alerts</h4>
-            <p className="text-gray-400 text-sm">Check high-priority disruptions requiring immediate attention</p>
+        <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Quick Actions</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-3 sm:p-4 hover:bg-[#222222] transition-colors cursor-pointer">
+            <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-red-400 mb-2" />
+            <h4 className="text-white font-medium mb-1 text-sm sm:text-base">Review Critical Alerts</h4>
+            <p className="text-gray-400 text-xs sm:text-sm">Check high-priority disruptions requiring immediate attention</p>
           </div>
           
-          <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-4 hover:bg-[#222222] transition-colors cursor-pointer">
-            <Clock className="h-8 w-8 text-orange-400 mb-2" />
-            <h4 className="text-white font-medium mb-1">Process Expiring Items</h4>
-            <p className="text-gray-400 text-sm">Take action on perishables expiring within 24 hours</p>
+          <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-3 sm:p-4 hover:bg-[#222222] transition-colors cursor-pointer">
+            <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-orange-400 mb-2" />
+            <h4 className="text-white font-medium mb-1 text-sm sm:text-base">Process Expiring Items</h4>
+            <p className="text-gray-400 text-xs sm:text-sm">Take action on perishables expiring within 24 hours</p>
           </div>
           
-          <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-4 hover:bg-[#222222] transition-colors cursor-pointer">
-            <DollarSign className="h-8 w-8 text-green-400 mb-2" />
-            <h4 className="text-white font-medium mb-1">Optimize Inventory</h4>
-            <p className="text-gray-400 text-sm">Run demand forecasts to optimize stock levels</p>
+          <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-3 sm:p-4 hover:bg-[#222222] transition-colors cursor-pointer sm:col-span-2 lg:col-span-1">
+            <DollarSign className="h-6 w-6 sm:h-8 sm:w-8 text-green-400 mb-2" />
+            <h4 className="text-white font-medium mb-1 text-sm sm:text-base">Optimize Inventory</h4>
+            <p className="text-gray-400 text-xs sm:text-sm">Run demand forecasts to optimize stock levels</p>
           </div>
         </div>
       </motion.div>

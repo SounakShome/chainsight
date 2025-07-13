@@ -178,17 +178,17 @@ export default function DemandForecast() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Controls */}
-      <div className="bg-[#111111] border border-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Forecast Parameters</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-[#111111] border border-gray-800 rounded-xl p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Forecast Parameters</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">SKU</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">SKU</label>
             <select
               value={selectedSku}
               onChange={(e) => setSelectedSku(e.target.value)}
-              className="w-full bg-[#1a1a1a] border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-[#1a1a1a] border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
               {availableSkus.map((sku) => (
                 <option key={sku} value={sku}>
@@ -199,11 +199,11 @@ export default function DemandForecast() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Region</label>
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">Region</label>
             <select
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
-              className="w-full bg-[#1a1a1a] border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-[#1a1a1a] border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
               {availableRegions.map((region) => (
                 <option key={region} value={region}>
@@ -213,11 +213,12 @@ export default function DemandForecast() {
             </select>
           </div>
           
-          <div className="flex items-end">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">&nbsp;</label>
             <button
               onClick={fetchForecast}
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-4 py-2 rounded-lg transition-colors flex items-center justify-center space-x-2"
+              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-4 py-2 rounded-lg transition-colors flex items-center justify-center space-x-2 text-sm"
             >
               {loading ? (
                 <RefreshCw className="h-4 w-4 animate-spin" />
@@ -232,21 +233,21 @@ export default function DemandForecast() {
 
       {/* Metrics Cards */}
       {forecastData && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#111111] border border-gray-800 rounded-xl p-6"
+            className="bg-[#111111] border border-gray-800 rounded-xl p-4 sm:p-6"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Current Stock</p>
-                <p className="text-2xl font-bold text-white mt-1">
+                <p className="text-gray-400 text-xs sm:text-sm">Current Stock</p>
+                <p className="text-xl sm:text-2xl font-bold text-white mt-1">
                   {forecastData.data.currentStock.toLocaleString()}
                 </p>
-                <p className="text-green-400 text-sm mt-1">Units available</p>
+                <p className="text-green-400 text-xs sm:text-sm mt-1">Units available</p>
               </div>
-              <BarChart3 className="h-8 w-8 text-blue-400" />
+              <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8 text-blue-400" />
             </div>
           </motion.div>
 

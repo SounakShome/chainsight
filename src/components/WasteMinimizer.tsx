@@ -118,10 +118,10 @@ export default function WasteMinimizer() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Summary Cards */}
       {summary && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -213,7 +213,60 @@ export default function WasteMinimizer() {
         transition={{ delay: 0.4 }}
         className="bg-[#111111] border border-gray-800 rounded-xl overflow-hidden"
       >
-        <div className="overflow-x-auto">
+        {/* Mobile Card View */}
+        <div className="block sm:hidden">
+          <div className="p-4 border-b border-gray-800">
+            <h3 className="text-base font-semibold text-white">Perishable Inventory</h3>
+          </div>
+          <div className="divide-y divide-gray-800">
+            {wasteItems.map((item) => (
+              <div key={item.id} className="p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <h4 className="text-white font-medium text-sm">{item.productName}</h4>
+                    <p className="text-gray-400 text-xs">{item.sku}</p>
+                    <span className="inline-block px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded mt-1">
+                      {item.category}
+                    </span>
+                  </div>
+                  <span className={`px-2 py-1 text-xs font-medium rounded border ${getRiskColor(item.wasteRisk)} ml-2`}>
+                    {item.wasteRisk.toUpperCase()}
+                  </span>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3 text-xs mb-3">
+                  <div>
+                    <p className="text-gray-400">Location</p>
+                    <p className="text-white">{item.location}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Stock</p>
+                    <p className="text-white">{item.currentStock} units</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Expires</p>
+                    <p className="text-white">{item.daysUntilExpiry} days</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Value</p>
+                    <p className="text-white">${item.totalValue.toLocaleString()}</p>
+                  </div>
+                </div>
+                
+                <button
+                  onClick={() => setSelectedItem(item)}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-sm transition-colors flex items-center justify-center space-x-1"
+                >
+                  <span>View Actions</span>
+                  <ArrowRight className="h-3 w-3" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-[#1a1a1a] border-b border-gray-800">
               <tr>
@@ -285,14 +338,14 @@ export default function WasteMinimizer() {
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-[#111111] border border-gray-800 rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            className="bg-[#111111] border border-gray-800 rounded-xl p-4 sm:p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-white">Action Recommendations</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-white">Action Recommendations</h3>
               <button
                 onClick={() => setSelectedItem(null)}
-                className="text-gray-400 hover:text-white"
+                className="text-gray-400 hover:text-white text-xl"
               >
                 ×
               </button>

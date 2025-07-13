@@ -50,21 +50,21 @@ export default function DashboardPage() {
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#111111] border-r border-gray-800 transform ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
-        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-800">
+        <div className="flex items-center justify-between h-14 sm:h-16 px-4 border-b border-gray-800">
           <div className="flex items-center space-x-2">
-            <BarChart3 className="h-8 w-8 text-blue-400" />
-            <span className="text-xl font-bold text-white">ChainSight</span>
+            <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8 text-blue-400" />
+            <span className="text-lg sm:text-xl font-bold text-white">ChainSight</span>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden text-gray-400 hover:text-white"
           >
-            <X className="h-6 w-6" />
+            <X className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
         </div>
         
-        <nav className="mt-8 px-4">
-          <ul className="space-y-2">
+        <nav className="mt-4 sm:mt-8 px-2 sm:px-4">
+          <ul className="space-y-1 sm:space-y-2">
             {navigation.map((item) => {
               const Icon = item.icon;
               return (
@@ -74,14 +74,14 @@ export default function DashboardPage() {
                       setActiveView(item.id);
                       setSidebarOpen(false);
                     }}
-                    className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                    className={`w-full flex items-center px-3 sm:px-4 py-2 sm:py-3 text-sm font-medium rounded-lg transition-colors ${
                       activeView === item.id
                         ? 'bg-blue-600 text-white'
                         : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                     }`}
                   >
-                    <Icon className="mr-3 h-5 w-5" />
-                    {item.name}
+                    <Icon className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="text-xs sm:text-sm">{item.name}</span>
                   </button>
                 </li>
               );
@@ -93,24 +93,24 @@ export default function DashboardPage() {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
         {/* Top bar */}
-        <header className="bg-[#111111] border-b border-gray-800 px-4 py-4">
+        <header className="bg-[#111111] border-b border-gray-800 px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <button
                 onClick={() => setSidebarOpen(true)}
                 className="lg:hidden text-gray-400 hover:text-white"
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
               </button>
-              <h1 className="text-xl font-semibold text-white">
+              <h1 className="text-lg sm:text-xl font-semibold text-white">
                 {navigation.find(nav => nav.id === activeView)?.name || 'Dashboard'}
               </h1>
             </div>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <button className="relative text-gray-400 hover:text-white">
-                <Bell className="h-6 w-6" />
-                <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full"></span>
+                <Bell className="h-5 w-5 sm:h-6 sm:w-6" />
+                <span className="absolute -top-1 -right-1 h-2 w-2 sm:h-3 sm:w-3 bg-red-500 rounded-full"></span>
               </button>
               <UserButton afterSignOutUrl="/" />
             </div>
@@ -118,7 +118,7 @@ export default function DashboardPage() {
         </header>
 
         {/* Main content area */}
-        <main className="flex-1 overflow-y-auto bg-[#0a0a0a] p-6">
+        <main className="flex-1 overflow-y-auto bg-[#0a0a0a] p-3 sm:p-4 lg:p-6">
           <motion.div
             key={activeView}
             initial={{ opacity: 0, y: 20 }}
